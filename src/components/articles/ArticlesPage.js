@@ -42,7 +42,7 @@ const ArticlePage = () => {
       if (isError) {
         return (
           <ErrorPage _class="articles_page_error">
-            Ops ... <br />
+            Ops ...<br />
             Cannot Get Data From the Server. <br />
             Please Try Again Later
           </ErrorPage>
