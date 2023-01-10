@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { useDispatch } from "react-redux";
+import { serverActions } from "./store/serverUrl";
+import {RouterProvider } from 'react-router-dom'; 
+import router from './router'; 
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+  const { REACT_APP_MODE } = process.env;
+  const dispatch = useDispatch();
+  dispatch(serverActions.setServerUrl(REACT_APP_MODE));
+  
+  return <RouterProvider router={router} />
+};
 
 export default App;

@@ -1,0 +1,20 @@
+.error{
+    overflow: hidden;
+}
+
+i.ambulance.icon {
+    width:100%;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    transform: translateX(-110%);
+    animation: carMoving 6s infinite;
+}
+
+@keyframes carMoving {
+    0% {
+        transform: translateX(-110%);
+    }
+    100% {
+        transform: translateX(110%);
+    }
+}
