@@ -1,24 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import ArticlesPage from './components/articles/ArticlesPage';
+import { useDispatch } from "react-redux";
+import { serverActions } from "./store/serverUrl";
+
 
 function App() {
+
+  const { REACT_APP_MODE } = process.env;
+  const dispatch = useDispatch();
+  dispatch(serverActions.setServerUrl(REACT_APP_MODE));
+  
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="app_container">
+        <ArticlesPage />
+      </div>
   );
 }
 
