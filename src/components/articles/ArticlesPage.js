@@ -5,6 +5,7 @@ import { articlesActions } from "../../store/articles";
 import ArticleCard from "./ArticleCard";
 import  ErrorPage  from "../layout/ErrorPage";
 import LoadingPage from "../layout/LoadingPage";
+import { NavLink } from "react-router-dom";
 
 
 
@@ -42,7 +43,7 @@ const ArticlePage = () => {
       if (isError) {
         return (
           <ErrorPage _class="articles_page_error">
-            Ops ...<br />
+            Ops ... <br />
             Cannot Get Data From the Server. <br />
             Please Try Again Later
           </ErrorPage>
@@ -59,14 +60,21 @@ const ArticlePage = () => {
         return <h1> No article </h1>;
       }
       return articles.map((article) => {
-        return <ArticleCard key={article.article_id} {...article}/>
+        return (
+          <NavLink
+            to={`article/${article.article_id}`}
+            key={article.article_id}
+          >
+            <ArticleCard {...article} />
+          </NavLink>
+        );
       });
     }
 
 
     return (
       <div className="articles_page_container">
-        <h1 className="article_page_header">This is Article Page</h1>
+        {/* <h1 className="article_page_header">This is Article Page</h1> */}
         <div className="articles_container">
         {displayArticles()}
         </div>

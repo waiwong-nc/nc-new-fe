@@ -4,6 +4,8 @@
     justify-content: flex-start;
     gap:10px;
     align-items: center;
+    padding: 1rem;
+    width:100%;
 
     .article_page_header {
 
@@ -12,90 +14,105 @@
 
     .articles_container {
         position:relative;
-        width:100%;
-        height:100%;  
+        width:98%;
+        // height:100%;
+         height:fit-content;  
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         gap:10px;
         align-items: center;
-        
 
-        .article_card {
+
+        a {
             position: relative;
-            width:95%;
-            height:auto;
-            border:thin rgb(117, 116, 116) solid;
-            border-radius: 10px;
-            box-shadow: 4px 5px 6px rgb(150, 148, 148);
-            padding: 15px;
-            transition: transform .2s;
+            width:100%;
+             height:fit-content;
+            border-color: rgb(10, 141, 108) thin solid;
+            color:rgb(100, 100, 100);
 
-            &:hover {
-                transform: scale(1.03);
-            }
-
-
-            // & > * {
-                // border:green thin solid;
-            // }
-            
-            .article_card_title{
+    
+            .article_card {
+                position: relative;
                 width:100%;
-                font-family: 'Lora', serif;
-                font-size: 1.2rem;
-                font-weight: 600;
-                text-transform: uppercase;
-                color: rgb(65, 63, 63);
-                margin-bottom: 2px;
-                cursor: pointer;
-            }
+                height:fit-content;
+                border:thin rgba(209, 209, 209, 0.5) solid;
+                border-radius: 10px;
+                box-shadow: 4px 5px 6px rgb(150, 148, 148);
+                padding: 15px;
+                transition: transform .2s;
+                background-color: rgba(255, 255, 255, 0.836);
 
-            .article_card_author{
-                width:100%;
-                text-transform: uppercase;
-                font-weight: 800;
-                font-size: smaller;
-                color: gray;
-                margin-bottom: 4px;
-            }
+                &:hover {
+                    transform: scale(1.03);
+                    // border: rgb(77, 77, 77) solid 1px;
+                    background-color: white;
 
-            .article_card_topic{
-                background-color: rgb(124, 124, 124);
-                color: white;
-                border-radius: 5px;
-                font-size: smaller;
-                text-transform: uppercase;
-                padding: 1px 6px;
-                margin-bottom: 4px;
-                width:fit-content;
-            }
-
-            .article_card_votes{
-                width:fit-content;
-                // display: inline-block;
-                margin-left: 10px;
-                border-radius: 5px;
-                float:right;
-                cursor: pointer;
-                span {
-                    transform: translateY(2.5px);
                 }
-            }
-            .article_card_comment_count{
-                width:fit-content;
-                // display: inline-block;
-                float:right;
-                cursor: pointer;
-                span {
-                    transform: translateY(2.5px);
+
+
+                // & > * {
+                    // border:green thin solid;
+                // }
+                
+                .article_card_title{
+                    width:100%;
+                    font-family: 'Lora', serif;
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    color: rgb(65, 63, 63);
+                    margin-bottom: 2px;
+                    cursor: pointer;
                 }
-            }
-            
-            .article_card_created_at{
-                width:fit-content;
-                font-size: 1rem;
-                margin-bottom: 2px;
+
+                .article_card_author{
+                    width:100%;
+                    text-transform: uppercase;
+                    font-weight: 800;
+                    font-size: smaller;
+                    color: rgb(110, 110, 110);
+                    margin-bottom: 4px;
+                }
+
+                .article_card_topic{
+                    background-color: rgb(124, 124, 124);
+                    color: white;
+                    border-radius: 5px;
+                    font-size: smaller;
+                    text-transform: uppercase;
+                    padding: 1px 6px;
+                    margin-bottom: 4px;
+                    width:fit-content;
+                }
+
+                .article_card_votes{
+                    position: absolute;
+                    right:8px;
+                    bottom:0;
+                    margin:0;
+                    width:fit-content;
+                    cursor: pointer;
+                    span {
+                        transform: translateY(2.5px);
+                    }
+                }
+                .article_card_comment_count{
+                    width:fit-content;
+                    position: absolute;
+                    right:55px;
+                    bottom:0;
+                    cursor: pointer;
+                    span {
+                        transform: translateY(2.5px);
+                    }
+                }
+                
+                .article_card_created_at{
+                    width:fit-content;
+                    font-size: 1rem;
+                    margin-bottom: 2px;
+                }
             }
         }
     } // End of articles_container
