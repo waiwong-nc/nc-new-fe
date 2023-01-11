@@ -8,7 +8,7 @@ const Header = () => {
     return (
       <div className="header_container">
         <div className="header_logo">
-          <img className="nc_logo" src={require("../../assets/nc-logo.webp")} />
+          <img className="nc_logo" src={require("../../assets/nc-logo.webp")} alt="" />
           <div
             className="earth"
             style={{

@@ -1,7 +1,9 @@
-import {useState, useRef} from 'react';
+import {useState ,useCallback} from 'react';
 import ScreenCover from "../../layout/ScreenCover";
 import RandomImage from "../../layout/RandomImage";
 import CommentsFrame from "../../comment/commentsFrame";
+import { patchVoteData } from "../../../store/articles";
+import { useSelector } from "react-redux";
 
 const ArticleFrame = (props) => {
 
@@ -16,36 +18,112 @@ const ArticleFrame = (props) => {
         votes,
     } = props;  
 
-    const bodyRef = useRef();
+    const apiURL = useSelector((state) => state.server.apiURL);
 
     const [screenCoverOn, setScreenCoverOn] = useState(false);
-    const [showComments, setShowComments] = useState(false);
+    const [screenCoverDeclineFunc, setScreenCoverDeclineFunc] = useState(null);
+    const [screenCoverConfirmFunc, setScreenCoverConfirmFunc] = useState(null);
+    const [screenCoverDeclineText, setScreenCoverDeclineText] = useState(null);
+    const [screenCoverConfirmText, setScreenCoverConfirmText] = useState(null);
+    const [screenCoverTitle, setScreenCoverTitle] = useState(null);
+    const [screenCoverContent, setScreenCoverContent] = useState(null);
 
-    function copyToClipboard() {
-        navigator.clipboard.writeText(window.location.href).then(() => {
-            setScreenCoverOn(true);
-        });
+
+    const [showComments, setShowComments] = useState(false);
+    const [isVoteClicked,setIsVoteClicked] = useState(false);
+    const [commentCount, setCommentCount] = useState(comment_count);
+    const [voteCount, setVoteCount] = useState(votes);
+
+
+    function copyUrlToClipboard() {
+      navigator.clipboard.writeText(window.location.href).then(() => {  
+        screenCoverSetting(
+          "URL Copied !",
+          null,
+          null,
+          null,
+          "OK",
+          setScreenCoverOn
+        );
+        setScreenCoverOn(true);
+      });
     }
 
     function moveToComments(){
-        window.scrollTo(0, document.body.scrollHeight);  
-     setShowComments(true);
+      window.scrollTo(0, document.body.scrollHeight);  
+      setShowComments(true);
     }
 
-    function clossScreen() {
-        setScreenCoverOn(false);
+    function debounce(fn,delay) { 
+      let id;
+      return (...args) => {
+        if(id) clearTimeout(id);
+        id = setTimeout(() => {
+          fn(args);
+        }, delay);
+      };
+    };
+
+    function voteAction() {
+
+      setVoteCount((prevState) => prevState + 1);
+      setIsVoteClicked(true);
+      setTimeout(() => {
+        setIsVoteClicked(false);
+      }, 500);
+
+      // connect to DB
+      patchVoteData(apiURL, article_id)
+      .catch((err) => {
+        // if failed in vote updating in DB
+        screenCoverSetting(
+          "Ops ... Failed in Updating the Vote !",
+          err.message,
+          null,
+          null,
+          "OK",
+          setScreenCoverOn
+        );
+        setScreenCoverOn(true);
+        setVoteCount((prevState) => prevState - 1);
+      });
+    };
+
+    // Debounce - Prevent "over clicked", leading too much connection to DB
+    const voteDebounceSave = useCallback(debounce(voteAction,500),[]);
+    function voteHandler() {
+        voteDebounceSave();
+    };
+
+
+    function screenCoverSetting(
+      title = null,
+      content = null,
+      decline_txt = null,
+      decline_fn = null,
+      confirm_txt = null,
+      confirm_fn = null
+    ) {
+
+      setScreenCoverDeclineFunc(()=> decline_fn);
+      setScreenCoverConfirmFunc(()=> confirm_fn);
+      setScreenCoverDeclineText(decline_txt);
+      setScreenCoverConfirmText(confirm_txt);
+      setScreenCoverTitle(title);
+      setScreenCoverContent(content);
     }
 
+  
     return (
       <>
         {screenCoverOn && (
           <ScreenCover
-            declineFunc={null}
-            confirmFunc={clossScreen}
-            declineText={null}
-            confirmText="OK"
-            title="URL Copied !"
-            content={null}
+            declineFunc={screenCoverDeclineFunc}
+            confirmFunc={screenCoverConfirmFunc}
+            declineText={screenCoverDeclineText}
+            confirmText={screenCoverConfirmText}
+            title={screenCoverTitle}
+            content={screenCoverContent}
             _class={null}
           />
         )}
@@ -63,14 +141,19 @@ const ArticleFrame = (props) => {
           <div className="button_group">
             <p className="article_comment" onClick={moveToComments}>
               <span className="material-symbols-outlined">comment</span>
-              comments({comment_count})
+              comments({commentCount})
             </p>
 
-            <p className="article_votes">
+            <p
+              className={
+                isVoteClicked ? "article_votes voted" : "article_votes"
+              }
+              onClick={voteHandler}
+            >
               <span className="material-symbols-outlined">thumb_up</span>
-              votes({votes})
+              votes({voteCount})
             </p>
-            <p className="article_share" onClick={copyToClipboard}>
+            <p className="article_share" onClick={copyUrlToClipboard}>
               <span className="material-symbols-outlined">link</span>
               share
             </p>
@@ -82,9 +165,7 @@ const ArticleFrame = (props) => {
             (Image is randomly picked From BBC News website)
           </p>
 
-          <p className="article_body" ref={bodyRef}>
-            {body}
-          </p>
+          <p className="article_body">{body}</p>
 
           <CommentsFrame
             showCommentsFunc={moveToComments}
