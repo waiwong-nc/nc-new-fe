@@ -9,6 +9,7 @@ import BackwardButton from '../../layout/BackwardButton';
 // import articles from '../../../store/articles';
 // import { NavLink } from "react-router-dom";
 
+
 const ArticlePage = () => {
 
   const params = useParams();
@@ -42,7 +43,7 @@ const ArticlePage = () => {
   }, [dispatch, apiURL, params.article_id]);
 
 
-  function displayArticles() {
+  const Content = () => {
     if (isError) {
       return (
         <ErrorPage _class="articles_page_error">
@@ -59,13 +60,14 @@ const ArticlePage = () => {
     }
     return (
       <ArticleFrame {...article} />
+
     )
   }
 
   return (
     <div className="article_page_container">
       <BackwardButton url="/articles" _class="article_back_btn" />
-      {displayArticles()}
+      <Content/>
     </div>
   );
 };

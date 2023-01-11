@@ -1,0 +1,52 @@
+.comments_frame {
+    position: relative;
+    width:100%;
+    min-height: 30px;
+
+    // & > * {
+    //     border: orange solid thin;
+    // }
+
+    .show_comment_btn {
+        position: absolute;
+        width:50%;
+        height: 30px;
+        text-align: center;
+        background-color: white;
+        border:grey thin solid;
+        cursor: pointer;
+        border-radius: 10px;
+        transform: translateX(-50%);
+        left:50%;
+        bottom: 0px;
+    }
+
+    .comment_card {
+        position:relative;
+        border-top: rgba(128, 128, 128, 0.445) thin solid;
+        background-color: rgba(255, 255, 255, 0.712);
+        display: flex;
+        flex-direction: row;
+        width:98%;
+        padding: 1rem;
+
+        // & > * {
+        // // border: orange solid thin;
+        // }
+
+        .comment_card_pic {
+            position: relative;
+            width:38px;
+            height:100%;
+
+            span {}       
+        }
+
+        .comment_card_details{
+            position:relative;
+            width:100%;
+        }
+
+
+    }
+}
