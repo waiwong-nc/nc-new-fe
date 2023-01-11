@@ -1,7 +1,8 @@
-import './App.css';
-import ArticlesPage from './components/articles/ArticlesPage';
+import './App.scss';
 import { useDispatch } from "react-redux";
 import { serverActions } from "./store/serverUrl";
+import {RouterProvider } from 'react-router-dom'; 
+import router from './router'; 
 
 
 function App() {
@@ -10,13 +11,7 @@ function App() {
   const dispatch = useDispatch();
   dispatch(serverActions.setServerUrl(REACT_APP_MODE));
   
-
-
-  return (
-      <div className="app_container">
-        <ArticlesPage />
-      </div>
-  );
-}
+  return <RouterProvider router={router} />
+};
 
 export default App;

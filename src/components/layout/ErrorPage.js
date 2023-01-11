@@ -3,7 +3,7 @@ import "./errorPage.scss";
 const ErrorPage = (props) => {
   return (
     <div className={`error ${props._class}`}>
-      <Icon ambulance name="ambulance" />
+      <Icon  ambulance="true" name="ambulance" />
       <p>{props.children}</p>
     </div>
   );
