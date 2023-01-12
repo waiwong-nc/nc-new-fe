@@ -14,7 +14,7 @@ const CommentsForm = ({ articleId, updateComments }) => {
   useEffect(() => {
     setIsLoggedIn(true);
     setUsername("happyamy2016");
-  });
+  },[]);
 
   // ----------- Screen Cover Setting - for display error message -------------//
   const [screenCoverOn, setScreenCoverOn] = useState(false);
