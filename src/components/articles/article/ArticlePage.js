@@ -6,8 +6,7 @@ import ErrorPage from "../../layout/ErrorPage";
 import LoadingPage from "../../layout/LoadingPage";
 import ArticleFrame from './ArticleFrame';
 import BackwardButton from '../../layout/BackwardButton';
-// import articles from '../../../store/articles';
-// import { NavLink } from "react-router-dom";
+
 
 
 const ArticlePage = () => {

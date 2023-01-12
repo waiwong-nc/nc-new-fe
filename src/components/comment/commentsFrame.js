@@ -69,7 +69,7 @@ const CommentsFrame = (props) => {
 
     return (
       <div className={`comments_frame ${_class}`}>
-        {showComments ? (
+        { showComments ? (
           <h3>Comments</h3>
         ) : (
           <button className="show_comment_btn" onClick={openComments}>
