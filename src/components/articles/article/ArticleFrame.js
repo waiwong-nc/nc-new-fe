@@ -82,6 +82,7 @@ const ArticleFrame = (props) => {
   }
 
   function voteAction() {
+    
     setVoteCount((prevState) => prevState + 1);
     setIsVoteClicked(true);
     setTimeout(() => {
