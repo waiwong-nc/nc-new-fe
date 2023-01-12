@@ -74,7 +74,6 @@ const ArticlePage = () => {
 
     return (
       <div className="articles_page_container">
-        {/* <h1 className="article_page_header">This is Article Page</h1> */}
         <div className="articles_container">
         {displayArticles()}
         </div>

@@ -43,7 +43,7 @@ const CommentsForm = ({ articleId, updateComments }) => {
   // ----------------------- Screen Cover Setting End ---------------------------//
 
   function submitHandler(e) {
-    
+
     e.preventDefault();
 
     if (!inputValidationCheck()) {

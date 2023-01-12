@@ -66,8 +66,7 @@ const ArticlePage = () => {
 
   return (
     <div className="article_page_container">
-      {/* <BackwardButton url="/articles" _class="article_back_btn" /> */}
-      <Content/>
+        <Content />
     </div>
   );
 };
