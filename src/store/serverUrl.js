@@ -19,6 +19,9 @@ const serverUrlSlice = createSlice({
             state.apiURL = state.urls.PRO;
         }
     },
+    getServerUrl(state) {
+      return state.apiURL;
+    }
   },
 });
 

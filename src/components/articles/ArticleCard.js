@@ -3,7 +3,7 @@
 const ArticleCard = (props) => {
 
 
-const {author, title, article_id, topic, created_at, votes, comment_count} = props;
+const {author, title, topic, created_at, votes, comment_count} = props;
 
 const d = new Date(created_at);
 return (

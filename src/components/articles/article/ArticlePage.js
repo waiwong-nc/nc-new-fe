@@ -5,8 +5,9 @@ import { useEffect, useState } from "react";
 import ErrorPage from "../../layout/ErrorPage";
 import LoadingPage from "../../layout/LoadingPage";
 import ArticleFrame from './ArticleFrame';
-import BackwardButton from '../../layout/BackwardButton';
-
+// import BackwardButton from '../../layout/BackwardButton';
+// import articles from '../../../store/articles';
+// import { NavLink } from "react-router-dom";
 
 
 const ArticlePage = () => {
@@ -65,7 +66,7 @@ const ArticlePage = () => {
 
   return (
     <div className="article_page_container">
-      <BackwardButton url="/articles" _class="article_back_btn" />
+      {/* <BackwardButton url="/articles" _class="article_back_btn" /> */}
       <Content/>
     </div>
   );

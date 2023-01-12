@@ -8,12 +8,17 @@ const initialArticlesState = {
 const articlesSlice = createSlice({
   name: "articles",
   initialState: initialArticlesState,
+  isNewCommentPosted : false,
   reducers: {
     setArticles(state, action) {
       state.articles = action.payload;
     },
+    setNewCommentPosted(state, action) {
+      state.isNewCommentPosted = action.payload;
+    }
   },
 });
+
 
 export const patchVoteData = (apiURL, articleId) => {
 
@@ -35,6 +40,28 @@ export const patchVoteData = (apiURL, articleId) => {
     return Promise.reject(err);
   });
 }
+
+export const postComment = (apiURL, articleId, body, username) => {
+  const url = `${apiURL}/api/articles/${articleId}/comments`;
+  const data = { body, username };
+
+  return axios({
+    method: "POST",
+    data,
+    url,
+  })
+  .then((response) => {
+
+    if (response.status !== 201) {
+      return Promise.reject("Error in posting comments");
+    }
+    return Promise.resolve(response.data.comment[0]);
+  })
+  .catch((err) => {
+  
+    return Promise.reject(err.response.data.msg);
+  });
+};
 
 
 export const articlesActions = articlesSlice.actions;
