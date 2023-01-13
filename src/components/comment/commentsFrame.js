@@ -2,8 +2,8 @@ import './comment.scss';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import ErrorPage from "../layout/ErrorPage";
-import LoadingPage from "../layout/LoadingPage";
 import CommentCard from "./commentCard";
+import CommentForm from "./commentForm";
 
 const CommentsFrame = (props) => {
 
@@ -11,11 +11,10 @@ const CommentsFrame = (props) => {
     const dispatch = useDispatch();
     const apiURL = useSelector((state) => state.server.apiURL);
     const [isError, setIsError] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
-    const [comments,setComments] = useState([])
+    const [comments,setComments] = useState([]);
+    const [newCommentId,setNewCommentId] = useState(null);
 
     useEffect(() => {
-        setIsLoading(true);
         const api = `${apiURL}/api/articles/${articleId}/comments`;
         fetch(api)
             .then((response) => {
@@ -27,56 +26,63 @@ const CommentsFrame = (props) => {
             .then((data) => {
                 setComments(data.comments);
                 setIsError(false);
-                setIsLoading(false);
             })
             .catch((err) => {
-                setIsLoading(false);
                 setIsError(true);
             });
     }, [dispatch, apiURL, articleId]);
 
 
     function openComments(){   
+        // tell parent component that "View Comments" button at the bottom is clicked
         showCommentsFunc();
     }
 
 
-    const Content = () => {
-        if (isError) {
-            return (
-                <ErrorPage _class="articles_page_error">
-                Ops ... <br />
-                Cannot Get Comments From the Server. <br />
-                Please Try Again Later
-                </ErrorPage>
-                );
-            }
-
-        if (isLoading) {
-            return (
-                <LoadingPage _class="articles_page_loading">Loading ...</LoadingPage>
-            );
-        }
-
-        if (showComments) {
-          return comments.map((comment) => {
-            return (
-                <CommentCard key={comment.comment_id} { ...comment } />
-            );
-          });
-        }
+    // Update comments 
+    // Listen to child "commentForm" when new comment is creaetd
+    function updateComments(newComment){
+    
+      setComments((prevState)=>{
+        return [ newComment, ...prevState ]; 
+      });
+      setNewCommentId(newComment.comment_id);
+      openComments(50);
     }
+
 
     return (
       <div className={`comments_frame ${_class}`}>
-        { showComments ? (
-          <h3>Comments</h3>
+        <CommentForm articleId={articleId} updateComments={updateComments} />
+
+        {showComments ? (
+          <>
+            <h3>Comments</h3>
+            { !isError ? (
+                <ul className="comment_list">
+                  { comments.map((comment) => {
+                    return (
+                      <CommentCard
+                        key={comment.comment_id}
+                        newCommentId={newCommentId}
+                        {...comment}
+                      />
+                    );
+                  }) }
+              </ul>
+            ) : (
+              <ErrorPage _class="articles_page_error">
+                Ops ... <br />
+                Cannot Get Comments From the Server. <br />
+                Please Try Again Later
+              </ErrorPage>
+            )}
+          </>
         ) : (
           <button className="show_comment_btn" onClick={openComments}>
-            Show Comments
+            View Comments
           </button>
         )}
-        <Content />
       </div>
     );
 };

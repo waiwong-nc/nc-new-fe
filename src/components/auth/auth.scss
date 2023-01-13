@@ -1,0 +1,20 @@
+.login_logo {
+    position: relative;
+    width:30px;
+    height: 100%;
+    // border:blue thin solid;
+    transform:scale(1.4);
+    margin: 0;
+
+
+    p {
+        position: relative;
+        width:100px;
+        font-size: 8px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        margin:0;
+        text-transform: uppercase;
+        transform: translateY(-6px) translateX(-3px);
+    }
+}
