@@ -3,6 +3,7 @@ import axios from "axios";
 
 const initialArticlesState = {
     articles : [],
+    topics : [],
 };
 
 const articlesSlice = createSlice({
@@ -12,6 +13,9 @@ const articlesSlice = createSlice({
   reducers: {
     setArticles(state, action) {
       state.articles = action.payload;
+    },
+    setTopics(state,action){
+      state.topics = action.payload;
     }
   },
 });
