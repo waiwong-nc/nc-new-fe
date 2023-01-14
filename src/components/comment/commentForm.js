@@ -1,20 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { postComment } from "../../store/articles";
 import ScreenCover from "../layout/ScreenCover";
+
+
 
 const CommentsForm = ({ articleId, updateComments }) => {
   const [commentTxt, setCommentTxt] = useState("");
   const apiURL = useSelector((state) => state.server.apiURL);
   const [isPosting, setIsPosting] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [username, setUsername] = useState(null);
+
 
   // hardcode authentication
-  useEffect(() => {
-    setIsLoggedIn(true);
-    setUsername("happyamy2016");
-  },[]);
+  const username = useSelector((state) => state.auth.username);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   // ----------- Screen Cover Setting - for display error message -------------//
   const [screenCoverOn, setScreenCoverOn] = useState(false);
@@ -42,7 +41,9 @@ const CommentsForm = ({ articleId, updateComments }) => {
   }
   // ----------------------- Screen Cover Setting End ---------------------------//
 
+  // Submit Comment
   function submitHandler(e) {
+    console.log("trigger");
 
     e.preventDefault();
 
@@ -57,7 +58,7 @@ const CommentsForm = ({ articleId, updateComments }) => {
       .then((data) => {
         updateComments(data); // tell parent component that new comment is created
         setIsPosting(false);
-        setCommentTxt("");    // reset the textarea
+        setCommentTxt(""); // reset the textarea
       })
       .catch((err) => {
         // show error screen
