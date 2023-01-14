@@ -17,8 +17,12 @@ const HeaderHiddenNav = () => {
 
         if (prevState === false) {
             setDropDownMenuClass("open");
+            window.onscroll = () => {
+              window.scroll(0, 0);
+            };
         } else {
             setDropDownMenuClass("");
+            window.onscroll=""
         }
 
         return !prevState;
@@ -52,7 +56,7 @@ const HeaderHiddenNav = () => {
       >
         <nav className="hidden_nav">
           <div className="nav_wrapper" key="all">
-            <NavLink to={"articles"}> All Articles </NavLink>
+            <NavLink to={"articles"}>All Articles</NavLink>
             <p>Show all the articles</p>
           </div>
 

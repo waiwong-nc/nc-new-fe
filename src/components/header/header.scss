@@ -10,7 +10,7 @@
     .header_wrapper{
         width:100%;
         max-width: 1020px;
-        height:100%;
+        height:70px;
         padding: 8px 40px 8px 20px;
         display: flex;
         flex-direction: row;
@@ -25,16 +25,9 @@
             // border:red thin solid;
         }
 
-        .header_logo {
-            position: relative;
-            width:130px;
-            min-width:130px;
-            height:60px;
-            overflow: hidden;
-            transform:translateY(-5px);
-            cursor: pointer;
-
-            @media (max-width: 980px) {
+        a {
+             @media (max-width: 980px) {
+                 width:fit-content;
                 position: absolute;
                 left:0;
                 right:0;
@@ -43,57 +36,81 @@
             }
 
 
-            .nc_logo {
-                position:absolute;
-                width:50px;
-                top:6px;
-                z-index: 3;
-                margin:auto;
-                left:0;
-                transform:scale(1.3);
-                object-fit: cover;
-                border:white thin solid;          
-            }
+            .header_logo {
+                position: relative;
+                width:130px;
+                min-width:130px;
+                height:60px;
+                overflow: hidden;
+                transform:translateY(-5px);
+                cursor: pointer;
 
-            p {
-                position: absolute;
-                bottom:5px;
-                left:48px;
-                font-size: 1.6rem;
-                line-height: 20px;
-                font-weight:bolder;
-                letter-spacing: 0rem;
-                color: rgb(0, 0, 0);
-                z-index: 3;
-                span{
-                    font-family:Arial, Helvetica, sans-serif;
-                    font-weight:bolder;
+                // @media (max-width: 980px) {
+                //     position: absolute;
+                //     left:0;
+                //     right:0;
+                //     margin: auto;
+                //     transform:translateY(-5px) scale(0.8);
+                // }
+
+
+                .nc_logo {
+                    position:absolute;
+                    width:50px;
+                    top:6px;
+                    z-index: 3;
+                    margin:auto;
+                    left:0;
+                    transform:scale(1.3);
+                    object-fit: cover;
+                    border:white thin solid;          
                 }
-            }
 
-            .earth{
-                position:absolute;
-                // z-index: 3;
-                top:10px;
-                right:12px;
-                // margin:auto;
-                width:22px;
-                height:22px;
-                border-radius: 50%;
-                background-size: cover;
-                box-shadow: -1px -1px 4px .1px rgb(0, 0, 0) inset, 0 0 2px .2px #000;
-                animation: spin 5s linear alternate infinite;
-                filter: grayscale(0);
-            }
-        } // End of Logo
+                p {
+                    position: absolute;
+                    bottom:5px;
+                    left:48px;
+                    font-size: 1.6rem;
+                    line-height: 20px;
+                    font-weight:bolder;
+                    letter-spacing: 0rem;
+                    color: rgb(0, 0, 0);
+                    z-index: 3;
+                    span{
+                        font-family:Arial, Helvetica, sans-serif;
+                        font-weight:bolder;
+                    }
+                }
+
+                .earth{
+                    position:absolute;
+                    // z-index: 3;
+                    top:10px;
+                    right:15px;
+                    // margin:auto;
+                    width:22px;
+                    height:22px;
+                    border-radius: 50%;
+                    background-size: cover;
+                    box-shadow: -1px -1px 4px .1px rgb(0, 0, 0) inset, 0 0 2px .2px #000;
+                    animation: spin 5s linear alternate infinite;
+                    filter: grayscale(0);
+                }
+            } // End of Logo
+
+        } // End of a (wrapping logo)
 
         .Login_logo{
             position: relative;
             margin-left: 30px;
             height: 100%;
+          
             transform:translateY(15px);
+            // border:thin solid red;
             @media (max-width: 980px) {
                 margin-left: 0px;
+                margin-top:2px;
+                 transform:translateY(11px);
             }
         }
         
@@ -150,27 +167,34 @@
             a {
                 text-decoration: none;
                 font-family:Verdana, Geneva, Tahoma, sans-serif;
-                font-size:small;
+                font-size:1.1rem;
+                font-weight: bold;
                 letter-spacing: .1rem;
                 padding: 2px 6px;
-                border-radius: 5px;
-                background-color: black;
+                // border-radius: 5px;
+                background-color: rgba(190, 190, 190, 0.151);
                 text-transform: capitalize;
-                color: white;
+                color: rgb(0, 0, 0);
+                height:90%;
+                width:23%;
+                padding:14px 20px 20px 20px;
                 cursor: pointer;
-            }
 
+                &:hover{
+                    background: black;
+                    color:white;
+                }
+            }
         } // end of header_nav
 
         .hidden_menu {
-            // border:solid thin red;
-            float:right;   
             cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
+            transform:translateY(2px);
             display: none;
-
+            
             @media (max-width: 980px) {
                 display:unset;
             }
@@ -213,12 +237,12 @@
                 .nav_wrapper{
 
                     position: relative;
-                    display: flex;
-                    flex-direction: column;
+                    // display: flex;
+                    // flex-direction: column;
                     padding: 10px 10px 10px 10px;
                     margin-top: 2rem;
                     width:100%;
-                        cursor: pointer;
+                    cursor: pointer;
 
                     &:hover{
       
@@ -231,22 +255,26 @@
 
 
                     a{
+                        position: relative;
                         text-decoration: none;
                         font-family:Verdana, Geneva, Tahoma, sans-serif;
-                        font-size:2rem;
+                        font-size:1.5rem;
                         letter-spacing: .1rem;
                         // font-weight: bold;
                         text-transform: capitalize;
                         color: white;
                         text-decoration: underline;
+                        margin:0;
                 
                     }
 
                     p {
+                        position: relative;
                         color:white;
                         letter-spacing: 3px;
-                        font-size: 1.5rem;
-                        padding-top: 1.5rem;
+                        font-size: 1.3rem;
+                        padding-top: .3rem;
+                        margin:0;
                     }
                 }
             }

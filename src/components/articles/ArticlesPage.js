@@ -5,12 +5,13 @@ import { articlesActions } from "../../store/articles";
 import ArticleCard from "./ArticleCard";
 import  ErrorPage  from "../layout/ErrorPage";
 import LoadingPage from "../layout/LoadingPage";
-import { NavLink, useParams } from "react-router-dom";
-// import SortPanal from "./sort/SortPanal";
+import { NavLink, useParams, useLocation } from "react-router-dom";
+import SortPanal from "./sort/SortPanal";
 
 
 const ArticlePage = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const params = useParams();
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -22,20 +23,31 @@ const ArticlePage = () => {
 
   // construct query
   function queryConfiguration() {
+
     let query = "";
-    for (const [key, value] of Object.entries(params)) {
-      if (value) {
-        query += `${key}=${value}&`;
-      }
-    };
-    if (query !== "") {
-      setArticlePath(`/topic/${params.topic}/article`);
-    };
-    return query.slice(0,-1);
+    const dir = location.pathname.split('/');
+
+    // /sort/:query   * redirected by SortPanal.js
+    if (dir[1] === 'sort') {
+       query = dir[2];
+    }
+ 
+    if (dir[1] === "topic") {
+       if (params.topic) {
+         //  /topic/:topic
+         query += `topic=${params.topic}`;
+
+         if (query !== "") {
+           setArticlePath(`/topic/${params.topic}/article`);
+         }
+       }
+    }
+    return query;
   };
 
 
   useEffect(() => {
+
     const query = queryConfiguration();   
     const api = `${apiURL}/api/articles?${query}`;
     setIsLoading(true);
@@ -90,7 +102,7 @@ const ArticlePage = () => {
 
   return (
     <div className="articles_page_container">
-      {/* <SortPanal/> */}
+      <SortPanal topic={params.topic} />
       <div className="articles_container">{displayArticles()}</div>
     </div>
   );
