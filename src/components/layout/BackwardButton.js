@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 const BackwardButton = (props) => {
 
     const style = {
-        width:'fit-content',
-        backgroundColor: 'white'
+        // width:'fit-content',
+        // backgroundColor: 'white'
     }
 
     const navigate = useNavigate();

@@ -145,8 +145,10 @@ const ArticleFrame = (props) => {
       )}
 
       <div className="article_frame">
-        <BackwardButton url="/articles" _class="article_back_btn" />
-        <p className="article_topic">{topic}</p>
+        <div className="article_frame_head">
+          <BackwardButton url="/articles" _class="article_back_btn" />
+          <p className="article_topic">{topic}</p>
+        </div>
         <h1 className="article_title">{title}</h1>
 
         <p className="article_author">
