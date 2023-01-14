@@ -2,6 +2,7 @@ import './header.scss';
 import HeaderLogo from './HeaderLogo';
 import HeaderNav from './HeaderNav';
 import LoginLogo from  '../auth/Login';
+import HiddenNav from './HeaderHiddenNav';
 
 const Header = () => {
 
@@ -15,6 +16,7 @@ const Header = () => {
           </div>
           <div className="header_vertical_line2"></div>
           <HeaderNav />
+          <HiddenNav />
         </div>
       </div>
     );

@@ -30,6 +30,7 @@ const ArticleFrame = (props) => {
   const [screenCoverTitle, setScreenCoverTitle] = useState(null);
   const [screenCoverContent, setScreenCoverContent] = useState(null);
 
+
   const [showComments, setShowComments] = useState(false);
   const [isVoteClicked, setIsVoteClicked] = useState(false);
   const [commentCount] = useState(comment_count);
@@ -52,8 +53,10 @@ const ArticleFrame = (props) => {
 
   // When user click "View Comment" button or post a new comment, scroll screen to the comment area
   useEffect(() => {
-    const offsetTop = commentPosition.current.offsetTop;
-    window.scrollTo({ top: offsetTop, behavior: "smooth" });
+    if (postClick || showComments) {
+      const offsetTop = commentPosition.current.offsetTop;
+      window.scrollTo({ top: offsetTop, behavior: "smooth" });
+    }
   }, [showComments, postClick]);
 
 

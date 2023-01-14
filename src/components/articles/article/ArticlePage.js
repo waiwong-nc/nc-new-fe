@@ -5,12 +5,11 @@ import { useEffect, useState } from "react";
 import ErrorPage from "../../layout/ErrorPage";
 import LoadingPage from "../../layout/LoadingPage";
 import ArticleFrame from './ArticleFrame';
-// import BackwardButton from '../../layout/BackwardButton';
-// import articles from '../../../store/articles';
-// import { NavLink } from "react-router-dom";
 
 
 const ArticlePage = () => {
+
+  
 
   const params = useParams();
   const dispatch = useDispatch();
@@ -21,6 +20,7 @@ const ArticlePage = () => {
  
 
   useEffect(() => {
+
     window.scrollTo(0, 0);
     setIsLoading(true);
     const api = `${apiURL}/api/articles/${params.article_id}`;
