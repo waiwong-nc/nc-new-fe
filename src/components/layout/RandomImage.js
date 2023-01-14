@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 
 const RandomImage = ({ _class }) => {
 
-  const picNo = useMemo(() => Math.floor(Math.random() * 10), []);
+  const picNo = useMemo(() => Math.floor(Math.random() * 24), []);
 
   return (
     <img
