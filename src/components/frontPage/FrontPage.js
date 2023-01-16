@@ -83,7 +83,7 @@ const FrontPage = () => {
         // set subcontent articles
         setSubContentArticles(subContnet);
 
-        setIsLoading(true);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
