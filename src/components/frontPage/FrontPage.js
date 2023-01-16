@@ -159,31 +159,34 @@ const FrontPage = () => {
       <div className="front_page_subcontent_container">
         {subContentArticles.map((section) => {
           return (
-            <div className="subcontent_section" key={Object.keys(section)}>
-              <h3 className="subcontent_section_topic">
-                {Object.keys(section)}
-              </h3>
-              <div className="subcontent_articles_wrapper">
-                {section[Object.keys(section)].map((article) => {
-                  return (
-                    <div
-                      key={article.article_id}
-                      className="subcontent_article"
-                    >
-                      <div className="img">
-                        <RandomImage />
-                      </div>
+            
+              <div className="subcontent_section" key={Object.keys(section)}>
+                <h3 className="subcontent_section_topic">
+                  {Object.keys(section)}
+                </h3>
+                <div className="subcontent_articles_wrapper">
+                  {section[Object.keys(section)].map((article) => {
+                    return (
                       <NavLink
                         key={article.article_id}
                         to={`/articles/article/${article.article_id}`}
                       >
-                        <p className="title">{article.title}</p>
+                        <div
+                          key={article.article_id}
+                          className="subcontent_article"
+                        >
+                          <div className="img">
+                            <RandomImage />
+                          </div>
+
+                          <p className="title">{article.title}</p>
+                        </div>
                       </NavLink>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
-            </div>
+
           );
         })}
       </div>

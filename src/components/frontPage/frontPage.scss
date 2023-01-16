@@ -319,50 +319,55 @@
                     flex-direction: column;
                 }
 
-                .subcontent_article {
-
+                a {
                     position: relative;
                     width:24%;
                     height:300px;
-                    background-color: rgba(212, 211, 211, 0.123);
-                    cursor: pointer;
+                        cursor: pointer;
 
-                    @media (max-width: 980px) {
+
+                    .subcontent_article {
+
+                        position: relative;
                         width:100%;
-                        height: 100px;
-                        display: flex;
-                        flex-direction: row;
-                        margin-bottom: 10px;
-                    }
-
-
-                    .img {
-                        width:100%;
-                        height:70%;
+                        height:100%;
+                        background-color: rgba(212, 211, 211, 0.123);
+                    
 
                         @media (max-width: 980px) {
-                            width:150px;
-                            height:100%;
+                            width:100%;
+                            height: 100px;
                             display: flex;
                             flex-direction: row;
+                            margin-bottom: 10px;
                         }
 
-                        img{
+
+                        .img {
                             width:100%;
-                            height:100%;
-                            object-fit: cover;
-                        }
-                    }
+                            height:70%;
 
-                    a {
-                        color: black;
-                        width:100%;
-                            height:30%;
+                            @media (max-width: 980px) {
+                                width:150px;
+                                height:100%;
+                                display: flex;
+                                flex-direction: row;
+                            }
+
+                            img{
+                                width:100%;
+                                height:100%;
+                                object-fit: cover;
+                            }
+                        }
 
                         .title {
                             width:100%;
                             height:100%;
                             padding: 5px;
+                            color: black;
+                            width:100%;
+                            height:30%;
                             font-size: 1rem;
                             font-family: Arial, Helvetica, sans-serif;
                             @media (max-width: 980px) {
@@ -371,9 +376,10 @@
                             }
                             
                         }
-                    }
-                }
-            }
+                        
+                    } // End .subcontent_article
+                } // End of a
+            } // End subcontent_articles_wrapper
 
         } // End of front_page_section
         
