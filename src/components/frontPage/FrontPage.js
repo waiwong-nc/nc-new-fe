@@ -11,7 +11,7 @@ const FrontPage = () => {
 
     const dispatch = useDispatch();
     const apiURL = useSelector((state) => state.server.apiURL);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const [subContentArticles, setSubContentArticles] = useState([]);
     const [firstRowArticles, setFirstRowArticles] = useState([]);
@@ -83,7 +83,7 @@ const FrontPage = () => {
         // set subcontent articles
         setSubContentArticles(subContnet);
 
-        setIsLoading(false);
+        setIsLoading(true);
       })
       .catch((err) => {
         console.log(err);
