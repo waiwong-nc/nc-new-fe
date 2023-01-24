@@ -323,7 +323,13 @@
                     position: relative;
                     width:24%;
                     height:300px;
-                        cursor: pointer;
+                    cursor: pointer;
+                    @media (max-width: 980px) {
+                        width:100%;
+                        height:100px;
+                        margin-bottom: 10px;
+                    }
+
 
 
                     .subcontent_article {
